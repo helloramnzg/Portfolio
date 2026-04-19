@@ -591,18 +591,24 @@
       border-bottom: 0.5px solid var(--border-light);
       position: sticky; top: 0; z-index: 20;
     }
-    .mob-topbar-name { font-size: 18px; font-weight: 700; }
+    .mob-topbar-name {
+      font-size: 18px; font-weight: 700;
+      background: none; border: none; padding: 0;
+      font-family: 'Manrope', sans-serif; color: var(--text-primary);
+      cursor: pointer; text-align: left;
+    }
     .mob-topbar-right { display: flex; align-items: center; gap: 8px; }
+    .bbtn { display: none; }
 
     /* contact pill */
     .mob-contact-pill {
       font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 500;
-      color: var(--text-secondary); background: none;
-      border: 0.5px solid var(--border-mid); border-radius: 20px;
-      padding: 5px 12px; cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      color: #fff; background: var(--text-primary);
+      border: none; border-radius: 20px;
+      padding: 6px 14px; cursor: pointer;
+      transition: opacity 0.2s;
     }
-    .mob-contact-pill:hover { background: var(--bg-secondary); color: var(--text-primary); }
+    .mob-contact-pill:hover { opacity: 0.8; }
 
     /* burger icon */
     .mob-burger {
@@ -656,8 +662,8 @@
     /* gallery headline */
     .gal-headline {
       display: block;
-      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--text-tertiary);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-primary);
       padding: 1.5rem 1rem 0;
     }
 
@@ -684,7 +690,7 @@
 
 <!-- MOBILE TOPBAR -->
 <div class="mob-topbar">
-  <div class="mob-topbar-name">Rose Anne Monzaga</div>
+  <button class="mob-topbar-name" onclick="goHome()">Rose Anne Monzaga</button>
   <div class="mob-topbar-right">
     <button class="mob-contact-pill" onclick="sC(); closeMobNav()">Contact</button>
     <button class="mob-burger" id="mobBurger" onclick="toggleMobNav()" aria-label="Menu">
@@ -1052,6 +1058,7 @@ let cur = 0;
 function only(id) { ['vI','vP','vA','vC'].forEach(v => document.getElementById(v).classList.remove('on')); document.getElementById(id).classList.add('on'); }
 function clr() { for(let i=0;i<PD.length;i++) { const el = document.getElementById('i'+i); if(el) el.classList.remove('on'); } document.getElementById('la').classList.remove('on'); document.getElementById('lc').classList.remove('on'); }
 function enterWork() { document.getElementById('vW').classList.add('hidden'); setTimeout(() => { document.getElementById('vW').style.display = 'none'; }, 500); sI(); }
+function goHome() { const w = document.getElementById('vW'); w.style.display = 'flex'; requestAnimationFrame(() => { requestAnimationFrame(() => w.classList.remove('hidden')); }); closeMobNav(); }
 function sI() { only('vI'); clr(); setMobActive('mnWork'); }
 function sA() { only('vA'); clr(); document.getElementById('la').classList.add('on'); setMobActive('mnAbout'); }
 function sC() { only('vC'); clr(); document.getElementById('lc').classList.add('on'); setMobActive('mnContact'); }
